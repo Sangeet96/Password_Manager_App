@@ -1,57 +1,56 @@
-const express = require('express')
-const dotenv = require('dotenv')
+const express = require('express');
+const dotenv = require('dotenv');
 const { MongoClient } = require('mongodb');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
-dotenv.config()
+dotenv.config();
 
-// Connection URL
-const url = 'mongodb+srv://Sangeet:<password>@sangeet.gcn1f.mongodb.net/?retryWrites=true&w=majority&appName=Sangeet';
+const url = process.env.MONGO_URI; // Use environment variable for MongoDB URI
 const client = new MongoClient(url);
 
-// Database Name
 const dbName = 'cyberkey';
+const app = express();
 
-// console.log(process.env.MONGO_URI)
-
-const app = express()
-const port = process.env.PORT || 3000;
-app.use(bodyparser.json());
+app.use(bodyParser.json());
 app.use(cors({
   origin: 'https://password-manager-app-client.vercel.app', // Allow requests from your frontend
 }));
 
-client.connect();
-console.log('Connected successfully to server');
+client.connect()
+  .then(() => {
+    console.log('Connected successfully to server');
 
-// Get all the passwords
-app.get('/', async (req, res) => {
-    const db = client.db(dbName);
-    const collection = db.collection('passwords');
-    const findResult = await collection.find({}).toArray();
-    res.json(findResult)
-    // res.send('hello')
-})
+    // Get all passwords
+    app.get('/', async (req, res) => {
+      const db = client.db(dbName);
+      const collection = db.collection('passwords');
+      const findResult = await collection.find({}).toArray();
+      res.json(findResult);
+    });
 
-// save passwords
-app.post('/', async (req, res) => {
-    const password = req.body;
-    const db = client.db(dbName);
-    const collection = db.collection('passwords');
-    const findResult = await collection.insertOne(password);
-    res.send({success:true, result: findResult})
-    // res.send('hello')
-})
+    // Save password
+    app.post('/', async (req, res) => {
+      const password = req.body;
+      const db = client.db(dbName);
+      const collection = db.collection('passwords');
+      const result = await collection.insertOne(password);
+      res.json({ success: true, result });
+    });
 
-// delete passwords
-app.delete('/', async (req, res) => {
-    const password = req.body;
-    const db = client.db(dbName);
-    const collection = db.collection('passwords');
-    const findResult = await collection.deleteOne(password);
-    res.send({success:true, result: findResult})
-    // res.send('hello')
-})
+    // Delete password
+    app.delete('/', async (req, res) => {
+      const password = req.body;
+      const db = client.db(dbName);
+      const collection = db.collection('passwords');
+      const result = await collection.deleteOne(password);
+      res.json({ success: true, result });
+    });
 
-module.exports = app;
+    // Only start the server if MongoDB connects successfully
+    module.exports = app; // Export the app for Vercel
+  })
+  .catch(err => {
+    console.error('Failed to connect to MongoDB', err);
+    process.exit(1);
+  });
