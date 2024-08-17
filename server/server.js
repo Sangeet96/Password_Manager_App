@@ -18,7 +18,9 @@ const dbName = 'cyberkey';
 const app = express()
 const port = 3000
 app.use(bodyparser.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://password-manager-app-client.vercel.app', // Allow requests from your frontend
+}));
 
 client.connect();
 console.log('Connected successfully to server');
