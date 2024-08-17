@@ -16,7 +16,7 @@ const dbName = 'cyberkey';
 // console.log(process.env.MONGO_URI)
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 app.use(bodyparser.json());
 app.use(cors({
   origin: 'https://password-manager-app-client.vercel.app', // Allow requests from your frontend
