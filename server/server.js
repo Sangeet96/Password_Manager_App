@@ -6,7 +6,7 @@ const cors = require('cors');
 
 dotenv.config();
 
-const url = process.env.MONGO_URI; // Use environment variable for MongoDB URI
+const url = "mongodb+srv://Sangeet:<Sangeet@12345$>@sangeet.gcn1f.mongodb.net/cyberkey?retryWrites=true&w=majority&appName=Sangeet";
 const client = new MongoClient(url);
 
 const dbName = 'cyberkey';
