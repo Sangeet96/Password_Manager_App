@@ -53,9 +53,10 @@ client.connect()
     });
 
     // Only start the server if MongoDB connects successfully
-    module.exports = app; // Export the app for Vercel
+     // Export the app for Vercel
   })
   .catch(err => {
     console.error('Failed to connect to MongoDB', err);
-    process.exit(1);
   });
+
+module.exports = app;
