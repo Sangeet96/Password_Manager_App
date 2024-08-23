@@ -58,9 +58,6 @@ const Body = () => {
         }
         else {
             setpasswords([...passwords, {...form, id : uuidv4()}]);
-            await fetch("https://password-manager-app-server.vercel.app",{method:"DELETE",headers:{"Content-Type":"application/json"}, body: JSON.stringify({id: form.id})});
-
-
             let res = await fetch("https://password-manager-app-server.vercel.app",{method:"POST",headers:{"Content-Type":"application/json"}, body: JSON.stringify({...form, id : uuidv4()})});
 
             console.log([...passwords, form]);
@@ -92,6 +89,7 @@ const Body = () => {
     const handleEdit = async (id)=>{
         const editpassword = passwords.filter((password)=>password.id === id);
         const newpasswords = passwords.filter((password)=>password.id !== id);
+        await fetch("https://password-manager-app-server.vercel.app",{method:"DELETE",headers:{"Content-Type":"application/json"}, body: JSON.stringify({id: form.id})});
         setpasswords(newpasswords);
         // localStorage.setItem("passwords", JSON.stringify(newpasswords));
         setform({...editpassword[0],id:id});
