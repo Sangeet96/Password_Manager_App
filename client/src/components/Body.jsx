@@ -9,10 +9,25 @@ const Body = () => {
     const [passwords, setpasswords] = useState([]);
 
     const getPasswords= async ()=>{
-        let req = await fetch("https://password-manager-app-server.vercel.app");
+        try {
+        let req = await fetch("https://password-manager-app-server.vercel.app", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Optional: You can include credentials if needed
+            // credentials: 'include',
+        });
+        if (!req.ok) {
+            throw new Error(`Error: ${req.status}`);
+        }
         let passwords = await req.json();
         console.log(passwords);
         setpasswords(passwords);
+    } catch (error) {
+        console.error('Failed to fetch passwords:', error);
+        // Optionally handle the error (e.g., display an error message)
+    }
     }
 
     useEffect(() => {
