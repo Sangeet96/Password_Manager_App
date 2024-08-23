@@ -6,7 +6,7 @@ const cors = require('cors');
 
 dotenv.config();
 
-const url = "mongodb+srv://Sangeet:Sangeet%4012345%24@sangeet.gcn1f.mongodb.net/cyberkey?retryWrites=true&w=majority&appName=Sangeet";
+const url = "mongodb+srv://Sangeet:Sangeet%4012345%24@cluster0.gcn1f.mongodb.net/cyberkey?retryWrites=true&w=majority&appName=Cluster0";
 const client = new MongoClient(url);
 
 const dbName = 'cyberkey';
