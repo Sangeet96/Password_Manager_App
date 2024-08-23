@@ -14,7 +14,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://password-manager-app-client.vercel.app', // Allow requests from your frontend
+  origin: 'https://password-manager-app-client.vercel.app',
+  methods: ["POST","GET","DELETE"],
+  credentials: true
 }));
 
 client.connect()
