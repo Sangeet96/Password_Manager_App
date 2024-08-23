@@ -31,6 +31,7 @@ console.log('Connected successfully to server');
       const collection = db.collection('passwords');
       const findResult = await collection.find({}).toArray();
       res.json(findResult);
+      res.send("Hello");
     });
 
     // Save password
