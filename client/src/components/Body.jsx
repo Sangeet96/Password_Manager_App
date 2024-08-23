@@ -9,7 +9,7 @@ const Body = () => {
     const [passwords, setpasswords] = useState([]);
 
     const getPasswords= async ()=>{
-        let req = await fetch("https://password-manager-app-backend.vercel.app/");
+        let req = await fetch("https://password-manager-app-server.vercel.app/");
         let passwords = await req.json();
         console.log(passwords);
         setpasswords(passwords);
@@ -43,10 +43,10 @@ const Body = () => {
         }
         else {
             setpasswords([...passwords, {...form, id : uuidv4()}]);
-            await fetch("https://password-manager-app-backend.vercel.app/",{method:"DELETE",headers:{"Content-Type":"application/json"}, body: JSON.stringify({id: form.id})});
+            await fetch("https://password-manager-app-server.vercel.app/",{method:"DELETE",headers:{"Content-Type":"application/json"}, body: JSON.stringify({id: form.id})});
 
 
-            let res = await fetch("https://password-manager-app-backend.vercel.app/",{method:"POST",headers:{"Content-Type":"application/json"}, body: JSON.stringify({...form, id : uuidv4()})});
+            let res = await fetch("https://password-manager-app-server.vercel.app/",{method:"POST",headers:{"Content-Type":"application/json"}, body: JSON.stringify({...form, id : uuidv4()})});
 
             console.log([...passwords, form]);
             setform({ website: "", username: "", password: "" });
@@ -71,7 +71,7 @@ const Body = () => {
         const newpasswords = passwords.filter((password)=>password.id !== id);
         setpasswords(newpasswords);
         // localStorage.setItem("passwords", JSON.stringify(newpasswords));
-        let res = await fetch("https://password-manager-app-backend.vercel.app/",{method:"DELETE",headers:{"Content-Type":"application/json"}, body: JSON.stringify({id})});
+        let res = await fetch("https://password-manager-app-server.vercel.app/",{method:"DELETE",headers:{"Content-Type":"application/json"}, body: JSON.stringify({id})});
         toast("🦄 Deleted Successfully!!");
     }
     const handleEdit = async (id)=>{
