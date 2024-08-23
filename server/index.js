@@ -27,11 +27,11 @@ console.log('Connected successfully to server');
 
     // Get all passwords
     app.get('/', async (req, res) => {
+      console.log("Hello");
       const db = client.db(dbName);
       const collection = db.collection('passwords');
       const findResult = await collection.find({}).toArray();
       res.json(findResult);
-      res.send("Hello");
     });
 
     // Save password
