@@ -23,8 +23,7 @@ app.use(cors({
 app.use(express.json());
 
 client.connect()
-  .then(() => {
-    console.log('Connected successfully to server');
+console.log('Connected successfully to server');
 
     // Get all passwords
     app.get('/', async (req, res) => {
@@ -51,13 +50,5 @@ client.connect()
       const result = await collection.deleteOne(password);
       res.json({ success: true, result });
     });
-
-    // Only start the server if MongoDB connects successfully
-     module.exports = app;// Export the app for Vercel
-  })
-  .catch(err => {
-    console.error('Failed to connect to MongoDB', err);
-    module.exports = app;
-  });
 
 module.exports = app;
