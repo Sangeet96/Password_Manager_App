@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
+  ],
+  "env": {
+    "MONGODB_URI": "mongodb+srv://Sangeet:Sangeet%4012345%24@sangeet.gcn1f.mongodb.net/cyberkey?retryWrites=true&w=majority&appName=Sangeet"
+  }
 }
