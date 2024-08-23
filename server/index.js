@@ -6,7 +6,7 @@ const cors = require('cors');
 
 dotenv.config();
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGO_URI;
 const client = new MongoClient(url);
 
 const dbName = 'cyberkey';
