@@ -42,4 +42,5 @@ I used MongoDB Atlas to store and manage the application's data, gaining experie
 </h3> Deployment: </h3>
 I learned how to deploy a full-stack application using Vercel, including handling environment variables and ensuring that both frontend and backend are correctly configured for production.
 <br>
-</h2> Live Link: https://password-manager-app-frontend.vercel.app/ </h2>
+
+<h2> Live Link: https://password-manager-app-frontend.vercel.app/ </h2>
