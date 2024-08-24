@@ -4,7 +4,8 @@
 CyberKey is a modern and secure password management application built using the MERN stack (MongoDB, Express, React, Node.js) with TailwindCSS for styling. The app allows users to securely save, edit, delete, and copy their passwords, making password management easy and efficient.
 
 <h2> Features </h2>
-</h3> Save Password: </h3>
+
+<h3> Save Password: </h3>
 Store your passwords securely with CyberKey. Each password is saved in a MongoDB Atlas database, ensuring that your data is kept safe.
 
 <h3> Edit Password: </h3>
