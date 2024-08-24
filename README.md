@@ -14,8 +14,11 @@ Copy Password: Quickly copy any password to your clipboard for easy pasting. Thi
 
 # Technologies Used
 Frontend: React.js, TailwindCSS
+
 Backend: Node.js, Express.js
+
 Database: MongoDB Atlas
+
 Deployment: Vercel
 
 # What I Learned
